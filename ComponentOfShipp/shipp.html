@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="./image/favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="./image/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>輪船公司財會月報系統</title>
+
+
+    <!--bootstrap-->
+    <script src="Lib/other/jquery.min.js"></script>
+    <script src="Lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="Lib/SbAdmin2/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="Lib/other/jquery.form.js"></script>
+    <!--google驗證-->
+    <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
+    <!--angular-->
+    <script src="Lib/angular/angular.min.js"></script>
+    <script src="Lib/angular/angular-route.js"></script>
+    <script src="Lib/angular/angular-sanitize.min.js"></script>
+    <!--angularController-->
+    <script src="Shipp/js/shipp.js"></script>
+    <script src="Shipp/js/home.js"></script>
+    <script src="Shipp/js/keyin.js"></script>
+    <script src="Shipp/js/keyin2.js"></script>
+    <script src="Shipp/js/keyin3.js"></script>
+    <script src="Shipp/js/report1.js"></script>
+    <script src="Shipp/js/report2.js"></script>
+    <script src="Shipp/js/subjectConfig.js"></script>
+    <!--angularConfig-->
+    <script src="AngularConfig/shippRoute.js"></script>
+    <script src="AngularConfig/filter.js"></script>
+    <!--Custom-->
+    <link href="Lib/Css/shipp.css" rel="stylesheet" />
+    <script src="Lib/tbkcplugin/js/tbkcplugin.js"></script>
+    <link href="Lib/tbkcplugin/css/tbkcplugin.css" rel="stylesheet" />
+    <script src="Lib/other/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="Lib/other/Kai-ng-ui.js"></script>
+
+</head>
+
+<body ng-controller="shipp as shipp" ng-app="shippApp">
+    <div style="margin:0;padding:0;min-width:1200px;">
+        <div id="topBar">
+            <div id="topMenu">
+                <div id="menuLeft">
+                    <a href="#" style="padding-left:10px;">
+                        <i class="material-icons" style="font-size:52px;position:relative;top:21px;">directions_boat</i>
+                        <img style="height:70%;width:70%;" src="Image/logo.png" />
+                    </a>
+                </div>
+                <div id="menuRight">
+                    <ul class="ulMenu">
+                        <li class="kai-underline-from-center"
+                            ng-mouseover="shipp.mouseover()"
+                            ng-mouseleave="shipp.mouseleave()"
+                            ng-class="{'kai-underline-from-center-active':'report'==shipp.selectMenu}">
+                            <a>
+                                財會月報
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#report1">
+                                        輪船公司年度財務概要
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#report2">
+                                        成本分析表
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="kai-underline-from-center"
+                            ng-mouseover="shipp.mouseover()"
+                            ng-mouseleave="shipp.mouseleave()"
+                            ng-class="{'kai-underline-from-center-active':'keyin'==shipp.selectMenu}">
+                            <a>
+                                報表鍵入
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#keyin/Subject1">
+                                        資產負債表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#keyin2/Subject2">
+                                        損益表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#keyin3/Subject3">
+                                        收入明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#keyin3/Subject4">
+                                        航行費用明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#keyin3/Subject5">
+                                        管理費用明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#keyin3/Subject6">
+                                        利息費用明細表
+                                    </a>
+                                </li>
+                                <li style="position:relative;z-index:9999999999999999;">
+                                    <a href="#keyin3/Subject7">
+                                        雜項費用明細表
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="kai-underline-from-center"
+                            ng-mouseover="shipp.mouseover()"
+                            ng-mouseleave="shipp.mouseleave()"
+                            ng-class="{'kai-underline-from-center-active':'subjectConfig'==shipp.selectMenu}">
+                            <a>
+                                科目設定
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#subjectConfig/Subject1">
+                                        資產負債表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#subjectConfig/Subject2">
+                                        損益表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#subjectConfig/Subject3">
+                                        收入明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#subjectConfig/Subject4">
+                                        航行費用明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#subjectConfig/Subject5">
+                                        管理費用明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#subjectConfig/Subject6">
+                                        利息費用明細表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#subjectConfig/Subject7">
+                                        雜項費用明細表
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="login.aspx" class="kai-underline-from-center">登出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="height:100px;"></div>
+        <div style="background-color:#FFF2F2;" id="nowbody">
+            <div id="bodyContext" style="padding-bottom:20px;">
+                <ng-view></ng-view>
+            </div>
+        </div>
+        <div style="background-color:#595959;padding-bottom:20px;">
+            <div id="footerContext" style="color:#D4D4D4;line-height:30px;padding-left:10px;padding-right:10px;">
+                高雄市政府交通局 版權所有©Copyright 2016，請尊重智慧財產權， 未經允許請勿任意轉載、複製或做商業用途。<br />
+                建議使用瀏覽器 Google Chrome、Firefox、IE9 等以上版本<br />
+                地址：80054高雄市新興區中正三路25號8樓　電話：07-229-9825<br />
+                <a href="http://www.tbkc.gov.tw/AOther_private.aspx" style="color:white;">隱私權政策</a>　<a href="http://www.tbkc.gov.tw/AOther_safe.aspx" style="color:white;">網站安全政策</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    $(function () {
+        var topOffset = 50;
+        var height = ((window.innerHeight > 0) ? window.innerHeight : screen.height) - 1;
+        height = height - 209 - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#bodyContext").css("min-height", (height) + "px");
+        }
+    });
+</script>

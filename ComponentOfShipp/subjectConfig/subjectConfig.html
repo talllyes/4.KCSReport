@@ -1,0 +1,105 @@
+﻿<div class="bodyTitle" style="padding-left:20px;">科目設定 > {{subjectConfig.typeText}}</div>
+<div class="panel panel-default" style="margin-bottom:0;">
+    <div class="panel-body">
+        <div class="loadering" style="height:500px;padding-top:100px;">
+            <div class="loader3">
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loaderOK" style="display:none;">
+            <div ng-repeat="data in subjectConfig.data" class="panel panel-danger" style="margin-bottom:20px;">
+                <div class="panel-heading" style="background-color:#FFD4D4;">
+                    <button ng-click="subjectConfig.detailShow(data)" class="btn btn-pink" style="padding:2px;font-size:17px;width:34px;height:34px;margin-right:10px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <span style="font-size:18px;line-height:34px;vertical-align:middle;" class="panel-title">
+                        <span ng-if="data.Num!='0'">編號：{{ data.Num }}　</span>
+                        <span ng-if="data.Num!='0'">檢查號碼：{{ data.Code }}　</span>
+                        科目名稱：{{ data.Name }}<span>　</span>
+                    </span>
+                    <div class="pull-right">
+                        <button class="btn btn-pink" ng-click="subjectConfig.saveCheck()" style="padding:2px;font-size:17px;width:34px;height:34px;">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding:20px;">
+                    <div ng-repeat="data in data.Child" ng-include="'subjectTree'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="subjectTree">
+    <button ng-click="subjectConfig.detailShow(data)" ng-disabled="subjectConfig.btnFlag" class="btn btn-default" style="padding:2px;font-size:17px;width:34px;height:34px;margin-right:10px;">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+    <span style="line-height:34px;vertical-align:middle;">
+        編號：
+        <input type="text" ng-model="data.Num" style="margin-bottom:20px;width:100px;padding-left:8px;" ng-focus="subjectConfig.updateNum=subjectConfig.updateNum+1" ng-blur="subjectConfig.save(data)" />
+
+        檢查號碼：
+        <input type="text" ng-model="data.Code" style="margin-bottom:10px;width:50px;padding-left:8px;" ng-focus="subjectConfig.updateNum=subjectConfig.updateNum+1" ng-blur="subjectConfig.save(data)" />
+
+        科目名稱：
+        <input type="text" ng-model="data.Name" style="padding-left:8px;" ng-focus="subjectConfig.updateNum=subjectConfig.updateNum+1" ng-blur="subjectConfig.save(data)" />
+    </span>
+    <button ng-click="subjectConfig.delete(data)" ng-disabled="subjectConfig.btnFlag" class="btn btn-default" style="padding:2px;font-size:17px;width:34px;height:34px;margin-left:10px;">
+        <i class="fa fa-minus" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-pink" ng-click="subjectConfig.up(data)" ng-disabled="subjectConfig.btnFlag" style="padding:2px;font-size:17px;width:34px;height:34px;">
+        <i class="fa fa-upload" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-pink" ng-click="subjectConfig.down(data)" ng-disabled="subjectConfig.btnFlag" style="padding:2px;font-size:17px;width:34px;height:34px;">
+      <i class="fa fa-download" aria-hidden="true"></i>
+    </button>
+    <div ng-if="data.Child">
+        <div ng-repeat="data in data.Child" ng-include="'subjectTree'" style="padding-left:30px;">
+        </div>
+    </div>
+</script>
+<div class="kai-model-bg" ng-click="subjectConfig.detailHide()" style="background-color:black;position:fixed;top:0px;left:0px;height:100%;width:100%;border:#8C8C8C 1px solid;z-index:2000;opacity:0.5;display:none;">
+
+</div>
+<div class="kai-model kai-fade" id="kai-model" ng-class="subjectConfig.model" style="position:absolute;top:150px;">
+    <div style="background-color:white;width:550px;" class="kai-models">
+        <div style="background-color:#FFBFBF;border-top-right-radius: 5px;border-top-left-radius: 5px;padding:10px;font-size:18px;">
+            {{subjectConfig.addSelectSubject.Name}} > 新增子科目
+        </div>
+        <div style="border-bottom:1px solid #FF6E6E;"></div>
+        <div style="padding:20px;">
+            <table>
+                <tr>
+                    <td style="padding:10px;">編號：</td>
+                    <td><input type="text" style="width:100px;" ng-model="subjectConfig.insertSubmit.Num" /></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">檢查號碼：</td>
+                    <td><input type="text" style="width:100px;" ng-model="subjectConfig.insertSubmit.Code" /></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">科目名稱：</td>
+                    <td><input type="text" style="width:300px;" ng-model="subjectConfig.insertSubmit.Name" /></td>
+                </tr>
+            </table>
+        </div>
+        <div style="border-bottom:1px solid #FF6E6E;"></div>
+        <div style="padding:10px;text-align:right">
+            <button class="btn btn-primary" ng-click="subjectConfig.add()">確定</button>
+            <button class="btn btn-default" ng-click="subjectConfig.detailHide()">取消</button>
+        </div>
+    </div>
+</div>
+<div style="background-color:#D6D600;position:fixed;top:110px;left:calc(100%/2 - 100px);padding:10px;border:1px solid #FFFFFF;border-radius:8px;opacity:0;" id="saveSMessage">
+    <i class="fa fa-floppy-o" aria-hidden="true" style="color:#008585;"></i> {{subjectConfig.saveMessage}}
+</div>

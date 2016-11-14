@@ -1,0 +1,47 @@
+﻿@import "var";
+/*導航欄*/
+.k-navbar {
+    height: 55px;
+    background-color: white;
+    min-width: $panel-size_中大;
+    line-height: 55px;
+    vertical-align: middle;
+    font-size: $font-size_一般;
+
+
+    > .zone {
+        width: $panel-size_中大;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            > li {
+                float: left;
+                margin-right: 20px;
+
+                > a {
+                    display: block;
+                    float: left;
+                    color: $color_黑3;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: #ffb3ff;
+                        color: $color_黑5;
+                        text-decoration: none;
+                    }
+                }
+
+                > .active {
+                    font-weight: bold;
+                    color: $color_黑5;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+﻿@import "var";
+/*彈跳視窗*/
+.k-msgbox {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    padding: 20px;
+    display: none;
+
+    > .zone {
+        width: $panel-size_中;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    > .p-small {
+        width: $panel-size_小;
+    }
+
+    > .p-big {
+        width: $panel-size_小大;
+    }
+
+    > .p-col {
+        max-width: 100%;
+    }
+
+    > .panel {
+        border: #7878FF 1px solid;
+        border-radius: 5px;
+        box-shadow: 0 0 6px 1px #363636;
+        background-color: white;
+        position: relative;
+
+        > .head {
+            border-bottom: 1px solid $color_黑2;
+            min-height: 40px;
+            line-height: 40px;
+            vertical-align: middle;
+            font-size: $font-size_標題;
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        > .body {
+            padding: 20px;
+        }
+
+        > .footer {
+            border-top: 1px solid $color_黑2;
+            min-height: 40px;
+            line-height: 40px;
+            vertical-align: middle;
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: right;
+        }
+    }
+}

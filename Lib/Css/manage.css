@@ -1,0 +1,61 @@
+﻿body {
+    font-family: "微軟正黑體" !important;
+}
+
+.twoIcon {
+    min-width: 15px !important;
+}
+
+.boray {
+    color: #8C8C8C;
+}
+
+.ray {
+    color: #D4D4D4 !important;
+}
+
+.kai-hand {
+    cursor: pointer;
+}
+
+
+.kai-input {
+    background-color: white;
+    width: 120px;
+    padding: 5px;
+    padding-left: 17px;
+    border: #8C8C8C 1px solid;
+}
+
+    .kai-input:hover {
+        border: #7878FF 1px solid;
+        box-shadow: 0 0 1px 1px #ADADFF;
+    }
+
+    .kai-input:focus {
+        border: #7878FF 1px solid;
+        box-shadow: 0 0 1px 1px #ADADFF;
+    }
+
+
+.kai-fade {
+    opacity: 0;
+        z-index: -10;
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-out;
+}
+
+.kai-in {
+    opacity: 1;
+    z-index: 2000;
+}
+
+.kai-models {
+    border: #7878FF 1px solid !important;
+    border-radius:5px!important;
+    box-shadow: 0 0 6px 1px #363636!important;
+}

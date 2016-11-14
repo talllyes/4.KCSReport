@@ -1,0 +1,33 @@
+﻿@import "var";
+.k-font-s {
+    font-size: $font-size_最小;
+}
+
+.k-font-m {
+    font-size: $font-size_一般;
+}
+
+.k-font-b {
+    font-size: $font-size_標題;
+}
+
+.k-font-sb {
+    font-size: $font-size_小大;
+}
+
+.k-font-mb {
+    font-size: $font-size_中大;
+}
+.k-font-bb {
+    font-size: $font-size_大大;
+}
+
+.k-bold{
+    font-weight:bold;
+}
+
+.k-line{
+    border-bottom:1px solid $color_黑2;
+    margin-bottom:10px;
+    margin-top:10px;
+}

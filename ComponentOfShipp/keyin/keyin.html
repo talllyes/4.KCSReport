@@ -1,0 +1,270 @@
+﻿<div class="startLoad" style="height:500px;padding-top:100px;">
+    <div class="loader3">
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="startLoadOK" style="display:none;">
+    <div class="bodyTitle" style="padding-left:20px;padding-bottom:10px;">
+        報表鍵入 - {{keyin.typeText}}
+        <br />
+        <span style="line-height:38px;vertical-align:middle;">
+            報表年月：
+            <select style="height:33px;font-size:22px;" ng-model="keyin.select.yyy" ng-change="keyin.yyychange()">
+                <option ng-repeat="yyy in keyin.reportList.yyy" value="{{yyy}}">{{yyy}}</option>
+            </select>
+            年
+            <select style="height:33px;font-size:22px;" ng-model="keyin.select.mm">
+                <option ng-repeat="mm in keyin.mmList" value="{{mm}}">{{mm}}</option>
+            </select>
+            月
+        </span>
+        <div class="pull-right">
+            <span ng-if="!keyin.edit">
+                <button class="btn btn btn-default" ng-click="keyin.edit=true" style="margin:0;padding:2px;padding-left:4px;font-size:20px;width:38px;height:34px;">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </span>
+            <span ng-if="keyin.edit">
+                <button class="btn btn btn-success" ng-click="keyin.fakeSave()" style="margin:0;padding:2px;padding-top:0;font-size:20px;width:38px;height:34px;">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+            </span>
+            <button class="btn btn btn-default" ng-click="keyin.configDetailShow()" style="margin:0;padding:2px;padding-left:4px;font-size:18px;width:38px;height:34px;">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn btn-primary" ng-click="keyin.detailShow()">新增報表</button>
+        </div>
+    </div>
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-body">
+            <div class="loaderIN" style="height:500px;padding-top:100px;display:none;">
+                <div class="loader3">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="loaderOK">
+                <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                    <thead>
+                        <tr>
+                            <td colspan="3" style="vertical-align:middle;text-align:center;">
+                                資產
+                            </td>
+                            <td rowspan="2" style="width:120px;vertical-align:middle;text-align:center;">
+                                金額
+                            </td>
+                            <td rowspan="2" style="width:60px;vertical-align:middle;text-align:center;">％</td>
+                            <td colspan="3" style="vertical-align:middle;text-align:center">
+                                負債及業主權益
+                            </td>
+                            <td rowspan="2" style="width:120px;vertical-align:middle;text-align:center;">
+                                金額
+                            </td>
+                            <td rowspan="2" style="width:60px;vertical-align:middle;text-align:center;">％</td>
+                        </tr>
+                        <tr>
+                            <td style="width:70px;vertical-align:middle;text-align:center;">
+                                編號
+                            </td>
+                            <td style="width:45px;vertical-align:middle;text-align:center;">
+                                檢查號碼
+                            </td>
+                            <td style="vertical-align:middle;text-align:center;">
+                                科目名稱
+                            </td>
+                            <td style="width:70px;vertical-align:middle;text-align:center;">
+                                編號
+                            </td>
+                            <td style="width:45px;vertical-align:middle;text-align:center;">
+                                檢查號碼
+                            </td>
+                            <td style="vertical-align:middle;text-align:center;">
+                                科目名稱
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in keyin.data" style="height:40px;">
+                            <td style="vertical-align:middle;">
+                                {{data.Num}}
+                            </td>
+                            <td style="text-align:center;vertical-align:middle;">
+                                {{data.Code}}
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <span style="padding-left:{{data.LayerNum*10}}px"></span> {{data.Name}}
+                            </td>
+                            <td style="text-align:right;overflow:hidden;max-width:120px;vertical-align:middle;">
+                                <span ng-if="data.SubjectID!=0">
+                                    <span ng-if="data.SubjectID!=0">                                       
+                                        <span ng-if="!data.HaveCh">
+                                            <span ng-show="keyin.edit">
+                                                <input type="number" ng-model="data.GNum1" ng-blur="keyin.save(data)" style="text-align:right;width:100%;" />
+                                            </span>
+                                            <span ng-hide="keyin.edit">
+                                                {{data.GNum1|addggs}}
+                                            </span>
+                                        </span>
+                                            <span ng-if="data.HaveCh">
+                                                {{keyin.getNum(data)|addggs}}
+                                            </span>
+                                        
+                                    </span>
+                                </span>
+                            </td>
+                            <td style="text-align:right;vertical-align:middle;">
+                                <span ng-if="!data.HaveCh">
+                                    {{(data.GNum1/keyin.getNumAll()*100)|number:'2'}}
+                                </span>
+                                <span ng-if="data.HaveCh">
+                                    {{(keyin.getNum(data,'1')/keyin.getNumAll()*100)|number:'2'}}
+                                </span>
+                            </td>
+                            <td style="vertical-align:middle;">
+                                {{data.Num2}}
+                            </td>
+                            <td style="text-align:center;vertical-align:middle;">
+                                {{data.Code2}}
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <span style="padding-left:{{data.LayerNum2*10}}px"></span> {{data.Name2}}
+                            </td>
+                            <td style="text-align:right;overflow:hidden;max-width:120px;vertical-align:middle;">
+                                <span ng-if="data.SubjectID2!=0">
+                                    <span ng-if="!data.HaveCh2">
+                                        <span ng-show="keyin.edit">
+                                            <input type="number" ng-model="data.GNum21" ng-blur="keyin.save2(data)" style="text-align:right;width:100%;" />
+                                        </span>
+                                        <span ng-hide="keyin.edit">
+                                            {{data.GNum21|addggs}}
+                                        </span>
+                                    </span>
+                                    <span ng-if="data.HaveCh2">
+                                        {{keyin.getNum2(data)|addggs}}
+                                    </span>
+                                </span>
+                            </td>
+                            <td style="text-align:right;overflow:hidden;max-width:120px;vertical-align:middle;">
+                                <span ng-if="data.SubjectID2!=0">
+                                    <span ng-if="!data.HaveCh2">
+                                        {{(data.GNum21/keyin.getNumAll2()*100)|number:'2'}}
+                                    </span>
+                                    <span ng-if="data.HaveCh2" style="text-align:right;">
+                                        {{(keyin.getNum2(data,'1')/keyin.getNumAll2()*100)|number:'2'}}
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center;font-size:18px;vertical-align:middle;">資產總計</td>
+                            <td style="text-align:right;font-size:16px;vertical-align:middle;overflow:hidden;max-width:120px;">
+                                {{keyin.getNumAll()|addggs}}
+                            </td>
+                            <td style="text-align:center;font-size:16px;vertical-align:middle;">100</td>
+                            <td colspan="3" style="text-align:center;font-size:18px;vertical-align:middle;">負責及業主權益總計</td>
+                            <td style="text-align:right;font-size:16px;vertical-align:middle;overflow:hidden;max-width:120px;">
+                                {{keyin.getNumAll2()|addggs}}
+                            </td>
+                            <td style="text-align:center;font-size:16px;vertical-align:middle;">100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="kai-model-bg" ng-click="keyin.detailHide()" style="background-color:black;position:fixed;top:0px;left:0px;height:100%;width:100%;border:#8C8C8C 1px solid;z-index:2000;opacity:0.5;display:none;">
+
+    </div>
+    <div class="kai-model kai-fade" id="addRepport" ng-class="keyin.model" style="position:absolute;top:150px;">
+        <div style="background-color:white;width:550px;" class="kai-models">
+            <div style="background-color:#FFBFBF;border-top-right-radius: 5px;border-top-left-radius: 5px;padding:10px;font-size:18px;">
+                {{keyin.typeText}} > 新增報表月份
+            </div>
+            <div style="border-bottom:1px solid #FF6E6E;"></div>
+            <div style="padding:20px;">
+                <div style="margin-bottom:10px;">
+                    報表年月：<input type="text" ng-model="keyin.insertSubmit.ReportDate" maxlength="5" />
+                </div>
+                <div>
+                    <spna>　　</spna>格式：YYY(民國年)MM(月)，例：99年1月，09901。
+                </div>
+            </div>
+            <div style="border-bottom:1px solid #FF6E6E;"></div>
+            <div style="padding:10px;text-align:right">
+                <button class="btn btn-primary" ng-click="keyin.add()">確定</button>
+                <button class="btn btn-default" ng-click="keyin.detailHide()">取消</button>
+            </div>
+        </div>
+    </div>
+    <div class="kai-model kai-fade" id="configShow" ng-class="keyin.model2" style="position:absolute;top:150px;">
+        <div style="background-color:white;width:550px;" class="kai-models">
+            <div style="background-color:#FFBFBF;border-top-right-radius: 5px;border-top-left-radius: 5px;padding:10px;font-size:18px;">
+                {{keyin.typeText}} > 編輯科目
+            </div>
+            <div style="border-bottom:1px solid #FF6E6E;"></div>
+            <div style="padding:20px;height:500px;overflow:scroll;">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <td style="width:70px;vertical-align:middle;text-align:center;font-size:xx-small;">
+                                編號
+                            </td>
+                            <td style="width:45px;vertical-align:middle;text-align:center;font-size:xx-small;">
+                                檢查號碼
+                            </td>
+                            <td style="vertical-align:middle;text-align:center;font-size:14px;">
+                                科目名稱
+                            </td>
+                            <td style="width:50px;vertical-align:middle;text-align:center;font-size:14px;">
+                                顯示
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:xx-small;">
+                        <tr ng-repeat="data in keyin.subjectAlldata">
+                            <td style="vertical-align:middle;">
+                                {{data.Num}}
+                            </td>
+                            <td style="text-align:center;vertical-align:middle;">
+                                {{data.Code}}
+                            </td>
+                            <td style="vertical-align:middle;font-size:14px;">
+                                <span style="padding-left:{{data.LayerNum*10}}px"></span> {{data.Name}}
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" ng-disabled="keyin.subjectbtnFlag" ng-click="keyin.addSubject(data)" ng-if="data.Status=='0'">
+                                    新增
+                                </button>
+                                <button class="btn btn-danger" ng-disabled="keyin.subjectbtnFlag" ng-click="keyin.deleteSubject(data)" ng-if="data.Status=='1'">
+                                    刪除
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="background-color:#D6D600;position:fixed;top:110px;left:calc(100%/2 - 100px);padding:10px;border:1px solid #FFFFFF;border-radius:8px;opacity:0;" id="saveSMessage">
+        <i class="fa fa-floppy-o" aria-hidden="true" style="color:#008585;"></i> {{keyin.saveMessage}}
+    </div>
+</div>

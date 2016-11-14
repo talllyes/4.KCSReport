@@ -1,0 +1,539 @@
+﻿<div id="mainpage" data-loadstyle="loading4">
+    <div class="bodyTitle" style="padding-left:20px;padding-bottom:10px;">
+        輪船公司年度財務概要
+        <br />
+        <span style="line-height:38px;vertical-align:middle;">
+            報表年月：
+            <select style="height:33px;font-size:22px;" ng-model="report1.select.yyy" ng-change="report1.yyychange()">
+                <option ng-repeat="yyy in report1.reportList.yyy" value="{{yyy}}">{{yyy}}</option>
+            </select>
+            年
+            <select style="height:33px;font-size:22px;" ng-model="report1.select.mm">
+                <option ng-repeat="mm in report1.mmList" value="{{mm}}">{{mm}}</option>
+            </select>
+            月
+        </span>
+        <div class="pull-right">
+            <button class="btn btn btn-primary" ng-click="report1.excel()">匯出成Excel</button>
+        </div>
+    </div>
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-body">
+            <div id="mainpage2" data-loadstyle="loading4">
+                <div style="display:inline-block;width:450px;">
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="3" style="vertical-align:middle;text-align:center;">1.自有資金比率</td>
+                            </tr>
+                            <tr>
+                                <td style="width:180px;"></td>
+                                <td style="text-align:center;width:135px;">
+                                    {{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm)}}月
+                                </td>
+                                <td style="text-align:center;width:135px;">
+                                    {{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm,"1")}}月
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    自有資金比率
+                                </td>
+                                <td style="text-align:right;">
+                                    {{report1.getGNum('自有資金比率')}}%
+                                </td>
+                                <td style="text-align:right;">
+                                    {{report1.getGNum('自有資金比率2')}}%
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top:33px;"></div>
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="3" style="vertical-align:middle;text-align:center;">2.融資狀況</td>
+                            </tr>
+                            <tr>
+                                <td style="width:180px;">
+                                    借款額度及金額
+                                </td>
+                                <td style="text-align:center;width:135px;">
+                                    {{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm)}}月
+                                </td>
+                                <td style="text-align:center;width:135px;">
+                                    {{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm,"1")}}月
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding-left:20px;">
+                                    短期借款-總額度
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('短期借款總額度[0].GNum1')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('短期借款總額度[1].GNum1')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:40px;">
+                                    借款餘額
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('借款餘額[0].GNum1')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('借款餘額[1].GNum1')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:20px;">
+                                    長期借款-總額度
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:40px;">
+                                    已動用
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:40px;">
+                                    已償還
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:40px;">
+                                    借款餘額
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top:33px;"></div>
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="3" style="vertical-align:middle;text-align:center;">3.財務狀況</td>
+                            </tr>
+                            <tr>
+                                <td style="width:180px;">
+                                    項目
+                                </td>
+                                <td style="text-align:center;width:135px;">
+                                    {{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm)}}月
+                                </td>
+                                <td style="text-align:center;width:135px;">
+                                    {{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm,"1")}}月
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    運輸收入
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('運輸收入[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('運輸收入[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    附屬及開發事業收入
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    平準基金挹注收入
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    其他收入
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('其他收入[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('其他收入[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    總收入
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('總收入[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('總收入[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    借運輸成本 *註1
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('運輸成本[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('運輸成本[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    管理費用
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('管理費用[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('管理費用[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    貸款利息費用
+                                </td>
+                                <td style="text-align:right;">0</td>
+                                <td style="text-align:right;">0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    其他支出
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('其他支出[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('其他支出[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    總支出
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('總支出[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('總支出[1].GNum2')|addggs}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    當月份盈餘(虧損-)
+                                </td>
+                                <td style="text-align:right;">{{report1.getGNum('當月份盈餘[0].GNum2')|addggs}}</td>
+                                <td style="text-align:right;">{{report1.getGNum('當月份盈餘[1].GNum2')|addggs}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:inline-block;width:600px;vertical-align:top;float:right;">
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="5" style="vertical-align:middle;">
+                                    <span>4.{{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm)}}月份損益</span>
+                                    <span style="float:right;">單位：千元</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;width:185px;">收　入</td>
+                                <td style="text-align:center;width:75px;">
+                                    金　額
+                                </td>
+                                <td style="text-align:center;width:185px;">
+                                    成　本　及　費　用
+                                </td>
+                                <td style="text-align:center;width:75px;">
+                                    金　額
+                                </td>
+                                <td style="text-align:center;">
+                                    虧　損
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>不含折舊及權利金項目：</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>運輸收入</td>
+                                <td style="text-align:right;">{{report1.getGNum('運輸收入ml')|number}}</td>
+                                <td style="padding-left:20px;">運輸成本</td>
+                                <td style="text-align:right;">{{report1.getGNum('運輸成本mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>附屬及開發事業收入</td>
+                                <td style="text-align:right;">{{report1.getGNum('附屬及開發事業收入ml')|number}}</td>
+                                <td style="padding-left:20px;">管理費用</td>
+                                <td style="text-align:right;">{{report1.getGNum('管理費用mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>平準基金挹注收入</td>
+                                <td style="text-align:right;">{{report1.getGNum('平準基金挹注收入ml')|number}}</td>
+                                <td style="padding-left:20px;">貸款利息費用</td>
+                                <td style="text-align:right;">{{report1.getGNum('貸款利息費用mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>其他收入</td>
+                                <td style="text-align:right;">{{report1.getGNum('其他收入ml')|number}}</td>
+                                <td style="padding-left:20px;">其他支出</td>
+                                <td style="text-align:right;">{{report1.getGNum('其他支出mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left:20px;">小計 </td>
+                                <td style="text-align:right;">{{report1.getGNum('小計mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>折舊及權利金項目：</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left:20px;">折舊費用</td>
+                                <td style="text-align:right;">{{report1.getGNum('折舊費用mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left:20px;">小計</td>
+                                <td style="text-align:right;">{{report1.getGNum('折舊費用mr')|number}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>總計</td>
+                                <td style="text-align:right;">{{report1.getGNum('總收入[0].GNum2')|number}}</td>
+                                <td>總計</td>
+                                <td style="text-align:right;">{{report1.getGNum('總計mr')|number}}</td>
+                                <td ng-bind-html="report1.getGNum('虧損')|number|zeroBig" style="text-align:right;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top:35px;"></div>
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="5" style="vertical-align:middle;">
+                                    <span>5.{{report1.select.yyy}}年{{report1.getNOzero(report1.select.mm)}}月份主要收支</span>
+                                    <span style="float:right;">單位：千元</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:center;width:185px;">收　入 A</td>
+                                <td style="text-align:center;width:75px;">
+                                    金　額
+                                </td>
+                                <td style="text-align:center;width:185px;">
+                                    成　本 B
+                                </td>
+                                <td style="text-align:center;width:75px;">
+                                    金　額
+                                </td>
+                                <td style="text-align:center;">
+                                    差異 A-B
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    運輸收入<br />
+                                    (乘船收入)
+                                </td>
+                                <td ng-bind-html="report1.getGNum('運輸收入md')|number|zeroBig" style="text-align:right;"></td>
+                                <td>
+                                    運輸成本（不含折舊）<br />
+                                    (用人費用57%+服務費用33%+材料用品9%+其他1%)
+                                </td>
+                                <td ng-bind-html="report1.getGNum('運輸成本md')|number|zeroBig" style="text-align:right;"></td>
+                                <td ng-bind-html="report1.getGNum('差異1')|number|zeroBig" style="text-align:right;"></td>
+                            </tr>
+                            <tr>
+                                <td>附屬事業收入</td>
+                                <td ng-bind-html="report1.getGNum('附屬事業收入md')|number|zeroBig" style="text-align:right;"></td>
+                                <td>附屬事業成本</td>
+                                <td ng-bind-html="report1.getGNum('附屬事業成本md')|number|zeroBig" style="text-align:right;"></td>
+                                <td ng-bind-html="report1.getGNum('差異2')|number|zeroBig" style="text-align:right;"></td>
+                            </tr>
+                            <tr>
+                                <td>　</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>開發收入</td>
+                                <td ng-bind-html="report1.getGNum('開發收入md')|number|zeroBig" style="text-align:right;"></td>
+                                <td>開發成本</td>
+                                <td ng-bind-html="report1.getGNum('開發成本md')|number|zeroBig" style="text-align:right;"></td>
+                                <td ng-bind-html="report1.getGNum('差異3')|number|zeroBig" style="text-align:right;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:inline-block;vertical-align:top;width:500px;">
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="5" style="vertical-align:middle;text-align:center;">
+                                    月報資料
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align:center;">
+                                    {{report1.getNOzero(report1.select.mm)}}月份
+                                </td>
+                                <td></td>
+                                <td style="text-align:center;">
+                                    {{report1.getNOzero(report1.select.mm,"1")}}月份
+                                </td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>股東權益總額</td>
+                                <td ng-bind-html="report1.getGNum('股東權益總額[0].GNum1')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('股東權益總額[1].GNum1')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>資產總額</td>
+                                <td ng-bind-html="report1.getGNum('資產總額[0].GNum1')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('資產總額[1].GNum1')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>本期損益(當月)</td>
+                                <td ng-bind-html="report1.getGNum('本期損益[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('本期損益[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>保留盈餘(累積虧損)</td>
+                                <td ng-bind-html="report1.getGNum('保留盈餘[0].GNum1')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('保留盈餘[1].GNum1')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>航行費用-折舊</td>
+                                <td ng-bind-html="report1.getGNum('航行費用折舊[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('航行費用折舊[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>管理費用-折舊(不含攤銷)</td>
+                                <td ng-bind-html="report1.getGNum('管理費用折舊[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('管理費用折舊[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:inline-block;vertical-align:top;width:550px;float:right;">
+                    <table class="table table-striped table-bordered table-hover" style="font-size:xx-small;">
+                        <thead>
+                            <tr>
+                                <td colspan="5" style="vertical-align:middle;text-align:center;">
+                                    月報資料
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>會計科目代號</td>
+                                <td style="text-align:center;">
+                                    {{report1.getNOzero(report1.select.mm)}}月份
+                                </td>
+                                <td style="text-align:center;">％</td>
+                                <td style="text-align:center;">
+                                    {{report1.getNOzero(report1.select.mm,"1")}}月份
+                                </td>
+                                <td style="text-align:center;">％</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>54021</td>
+                                <td ng-bind-html="report1.getGNum('會計54021[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54021N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54021[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54021L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54022</td>
+                                <td ng-bind-html="report1.getGNum('會計54022[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54022N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54022[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54022L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54023</td>
+                                <td ng-bind-html="report1.getGNum('會計54023[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54023N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54023[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54023L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54024</td>
+                                <td ng-bind-html="report1.getGNum('會計54024[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54024N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54024[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54024L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54026</td>
+                                <td ng-bind-html="report1.getGNum('會計54026[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54026N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54026[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54026L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54027</td>
+                                <td ng-bind-html="report1.getGNum('會計54027[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54027N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54027[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54027L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54028</td>
+                                <td ng-bind-html="report1.getGNum('會計54028[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54028N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54028[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54028L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>54029</td>
+                                <td ng-bind-html="report1.getGNum('會計54029[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54029N')}}%</td>
+                                <td ng-bind-html="report1.getGNum('會計54029[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td style="text-align:right;">{{report1.getGNum('會計54029L')}}%</td>
+                            </tr>
+                            <tr>
+                                <td>航行費用合計</td>
+                                <td ng-bind-html="report1.getGNum('航行費用合計[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('航行費用合計[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(航行費用實際數)</td>
+                                <td ng-bind-html="report1.getGNum('航行費用實際數[0].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                                <td ng-bind-html="report1.getGNum('航行費用實際數[1].GNum2')|number|zeroBig" style="text-align:right;"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

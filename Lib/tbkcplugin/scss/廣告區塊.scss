@@ -1,0 +1,22 @@
+﻿@import "var";
+/*廣告區塊*/
+.k-adv {
+    min-height: 250px;
+    background-color: $color_紫5;
+    color: white;
+    padding-top: 25px;
+    font-size: $font-size_標題;
+    width: 100%;
+    min-width: $panel-size_中大;
+
+    > .zone {
+        width: $panel-size_中大;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        > div {
+            margin-bottom: 10px;
+        }
+    }
+}
